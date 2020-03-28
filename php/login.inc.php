@@ -1,0 +1,61 @@
+<?php 
+ if (isset($_POST{'login-submit'})) {
+    require ('db_handler.php');
+
+    $email = $_POST['e_mail'];
+    $typePassword = $_POST['user_password'];
+    
+    // If form is empty
+    if (empty($email) || empty($typePassword)) {
+        header("Location: ../login.php?error=emptyfields");
+        exit();
+    }
+    else {
+        $sql = "SELECT * FROM users WHERE e_mail=?;";
+        // Connect database
+        $stmt = mysqli_stmt_init($conn);
+
+        // If sql error
+        if (!mysqli_stmt_prepare($stmt, $sql)){
+            header("Location: ../login.php?error=sqlerror");
+            exit();
+        }
+        else {
+            mysqli_stmt_bind_param($stmt, "s", $email);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+            if($row = mysqli_fetch_array($result)) {
+                $passwordCheck = password_verify($typePassword, $row['user_password']);
+                if ($passwordCheck == false) {
+                    header("Location: ../login.php?error=wrongpassword");
+                    exit();
+                }
+                else if ($passwordCheck == true) {
+                    session_start();
+                    $_SESSION['user_id'] = $row['username'];
+                    $_SESSION['username'] = $row['user_id'];
+
+                    if($_SESSION["username"]) {
+                        header("Location: ../index.php?login=success");
+                        
+                       
+                    }
+
+                }
+                else {
+                    header("Location: ../login.php?error=wrongpassword");
+                    exit();
+                }
+            }
+            else {
+                header("Location: ../login.php?error=nouser");
+                exit();
+            }
+        }
+    }
+
+ }
+ else {
+    header("Location: ../index.php");
+    exit();
+ }

@@ -1,0 +1,17 @@
+.body {
+  margin: 0;
+  padding: 0;
+  background-image: url(/img/many.gif);
+}
+
+.container {
+  text-align: center;
+  padding: 50px;
+  background-color: ;
+}
+
+.container .card {
+  background-color: #636363;
+  color: #ffffff;
+  margin: auto;
+}

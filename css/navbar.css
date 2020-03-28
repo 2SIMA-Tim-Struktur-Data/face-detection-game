@@ -1,0 +1,14 @@
+nav {
+    background-color: #373737;
+    color: white;
+  }
+  .navbar .form-inline button {
+    margin: 0 10px;
+    font-family: sans-serif;
+    font-weight: bold;
+  }
+  
+  nav a {
+    font-weight: bold;
+    font-family: sans-serif;
+  }
