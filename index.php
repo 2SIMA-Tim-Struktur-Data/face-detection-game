@@ -1,3 +1,4 @@
+<?php session_start ()?>
 <?php require './php/db_handler.php'?>
 <!DOCTYPE html>
 <html lang="en">

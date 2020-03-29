@@ -1,0 +1,6 @@
+
+1. How make camera shoot --> output
+2. Set timer
+3. Array of question : shuffle question
+4. Collect data to calculate the score
+5. Figure how to remove that dots on the face
