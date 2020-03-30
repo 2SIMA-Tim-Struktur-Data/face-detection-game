@@ -1,15 +1,32 @@
 body {
     margin: 0;
     padding: 0;
-    width: 100vh;
+    width: 100vw;
     height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background-image: url(../img/face.gif);
+}
+
+video #video {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    /* left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%); */
 }
 
 canvas {
     position: absolute;
+    top: 0;
+    left: 0;
+    /* left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%); */
+}
+
+canvas#snapshot_result {
+    position: relative !important;
+    top: 50px;
 }
 
 .game_start_btn {
@@ -17,6 +34,7 @@ canvas {
     background-color: blue;
     color: wheat;
     border-radius: 5px;
+    position: absolute;
 }
 
 .game_start_btn:hover {
@@ -27,4 +45,42 @@ canvas {
 
 .game_start_btn:active {
     background-color: aquamarine;
+}
+
+.box {
+    margin: 0 auto;
+    height: 200px;
+    width: 200px;
+    position: relative;
+    border: dashed black 5px;
+    border-radius: 5px;
+    animation: spin 2s linear;
+}
+
+.content {
+    padding-top: 15em;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg) scale(1.2);
+    }
+}
+
+.box:after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 60px;
+    height: 240px;
+    width: 60px;
+}
+
+.box:before {
+    content: '';
+    position: absolute;
+    top: 60px;
+    left: -5px;
+    height: 60px;
+    width: 240px;
 }

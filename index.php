@@ -1,30 +1,51 @@
 <?php session_start ()?>
-<?php require './php/db_handler.php'?>
 <!DOCTYPE html>
 <html lang="en">
 
-    <?php include_once ("./head.php")?>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/homepage.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="js/homepage.js">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Document</title>
+</head>
 
 <body>
     <?php include_once("./navbar.php")?>
     <main>
 
-    
-        <?php 
-            if (isset($_SESSION['username'])) {
-                echo '<h1>You are logged in!</h1>';
-                echo"<h1>Welcome". " ". "<b>". ucfirst(($_SESSION["user_id"]))."</b>!</h1>";
-            }
-            else {
-                echo '<h1>You are logged out!</h1>';
-            }
+
+        <div class="container">
+            <div class="card text-center" style="width: 25rem;">
+                <div class="card-body">
+                    <?php 
+                        if (isset($_SESSION['username'])) {
+                            echo '<h2>You are logged in!</h2>';
+                            echo"<h2>Welcome to Face Detection Game,". " ". "<b>". ucfirst(($_SESSION["user_id"]))."</b>!</h2>";
+                        }
+                        else {
+                        echo '<h2>You are logged out!</h2>';
+                        }
             
-        ?>
-        
-        
-    </main>   
-    
+                    ?>
+                    
+                    <br>
+
+                    <p class="card-text">How to play: You need to make a expression based on the question. You only have 5 seconds to make that expression. The closest expression will get the highest expression. Good Luck</p>
+                    <a href="./main.php" class="btn btn-outline-warning">Start</a>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </main>
+
     <?php require "./global_script.php"?>
 </body>
-</html>
 
+</html>

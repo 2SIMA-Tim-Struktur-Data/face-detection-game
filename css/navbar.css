@@ -12,3 +12,11 @@ nav {
     font-weight: bold;
     font-family: sans-serif;
   }
+
+  nav button a{
+    color:#ffffff;
+  }
+  nav button a:hover {
+    text-decoration: none;
+    color: #ffffff;
+  }

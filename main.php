@@ -12,11 +12,19 @@
 </head>
 
 <body>
-    <center>
+    <!-- Webcam screen-->
+    <section>
         <video id="video" width="720" height="560" autoplay muted>
         </video>
+    </section>
+
+    <!-- Capture button to start the game -->
+    <div class="controller">
         <button id="game_start" class="game_start_btn">Start the Game</button>
-    </center>
+    </div>
+    
+    <!-- Snapshot result -->
+    <canvas id="snapshot_result" width="720" height="560"></canvas>
 </body>
 
 </html>

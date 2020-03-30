@@ -2,8 +2,8 @@
     <a class="navbar-brand">Face Recognition</a>
     <div class="form-inline">
         <button class="btn btn-outline-warning my-2 my-sm-0" type="submit"><a href="./index.php">Home</a></button>
-        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit"><a href="#">History User</a></button>
-        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit"><a href="">Leaderboard</a></button>
+        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit"><a href="./historyuser.html">History User</a></button>
+        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit"><a href="./leaderboard.html">Leaderboard</a></button>
         
 
         <?php 
