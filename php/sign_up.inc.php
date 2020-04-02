@@ -97,7 +97,7 @@ if (isset($_POST['signup-submit'])){
 }
 else {
     header("Location: ../sign_up.php");
-        exit();
+    exit();
 }
 
 

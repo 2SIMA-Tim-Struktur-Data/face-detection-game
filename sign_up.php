@@ -19,40 +19,79 @@
         <!-- Navbar -->
         <?php include_once("./navbar.php")?>
 
+        <!-- Add error message -->
+        
         <!-- Sign up form -->
         <form action="./php/sign_up.inc.php" method="post" class="form signup-form">
             <h1>Sign Up</h1>
-            <p style="opacity: 0.5;">Please fill in this form to create an account!</p>
+
+            <!-- Error alert -->
+            <?php 
+                if (isset($_GET['error'])) {
+                    // If submit empty field
+                    if($_GET['error'] == "emptyfields"){
+                        echo '<p class="signup_error">Please fill all the fields!</p>';
+                    }
+                    // If submit empty email and username
+                    else if($_GET['error'] == "invalidemailusername"){
+                        echo '<p class="signup_error">Invalid email and username!</p>';
+                    }
+                    // If submit invalid email
+                    else if($_GET['error'] == "invalidemail"){
+                        echo '<p class="signup_error">Invalid email!</p>';
+                    }
+                    // If submit invalid username
+                    else if($_GET['error'] == "invalidusername"){
+                        echo '<p class="signup_error">Invalid username!</p>';
+                    }
+                    // Passwords do not match
+                    else if($_GET['error'] == "passwordcheck"){
+                        echo '<p class="signup_error">Your passwords do not match!</p>';
+                    }
+                    // If email is taken
+                    else if($_GET['error'] == "usertaken"){
+                        echo '<p class="signup_error">This username is taken!</p>';
+                    }
+                }
+                else if (isset($_GET['signup'])) {
+                    if($_GET['signup'] == "success"){
+                        echo '<p class="signup_success">Your account has already been added, please <a class="user-link" href="./login.php">log in here</a></p>';
+                    }
+                }
+                else {
+                echo '<p style="opacity: 0.5; text-align: center;">Please fill in this form to create an account!</p>';
+                }
+            ?>
 
             <!-- Input username -->
             <div class="txtb">
                 <input type="text" name="username">
-                <span data-placeholder="Username..."></span>
+                <span data-placeholder="Username"></span>
             </div>
 
             <!-- Input email -->
             <div class="txtb">
                 <input type="text" name="e_mail">
-                <span data-placeholder="E-mail..."></span>
+                <span data-placeholder="E-mail"></span>
             </div>
             
             <!-- Input password -->
             <div class="txtb">
                 <input type="password" name="user_password">
-                <span data-placeholder="Password..."></span>
+                <span data-placeholder="Password"></span>
             </div>
 
             <!-- Re-type inputted password -->
             <div class="txtb">
                 <input type="password" name="confirm_password">
-                <span data-placeholder="Confirm Your Password..."></span>
+                <span data-placeholder="Confirm Your Password"></span>
             </div>
 
             <!-- Submit button -->
             <button type="submit" name="signup-submit" class="submit-btn">Sign Up</button>
 
             <div class="bottom-text">
-                Already have an account? <a href="#">Log In</a>
+                Already have an account? <a class="user-link" href="./login.php">Log In</a>
             </div>
 
         </form>

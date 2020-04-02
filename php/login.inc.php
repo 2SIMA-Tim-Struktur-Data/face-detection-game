@@ -2,16 +2,16 @@
  if (isset($_POST{'login-submit'})) {
     require ('db_handler.php');
 
-    $email = $_POST['e_mail'];
+    $username = $_POST['username'];
     $typePassword = $_POST['user_password'];
     
     // If form is empty
-    if (empty($email) || empty($typePassword)) {
+    if (empty($username) || empty($typePassword)) {
         header("Location: ../login.php?error=emptyfields");
         exit();
     }
     else {
-        $sql = "SELECT * FROM users WHERE e_mail=?;";
+        $sql = "SELECT * FROM users WHERE username=?;";
         // Connect database
         $stmt = mysqli_stmt_init($conn);
 
@@ -22,7 +22,7 @@
         }
         else {
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "s", $email);
+            mysqli_stmt_bind_param($stmt, "s", $username);
 
             // Attempt to execute the prepared statement
             mysqli_stmt_execute($stmt);

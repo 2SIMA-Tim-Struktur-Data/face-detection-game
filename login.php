@@ -21,10 +21,32 @@
 		<form action="./php/login.inc.php" method="post" class="form login-form">
 			<h1>Login</h1>
 
+			<!-- Error alert -->
+
+			<?php 
+                if (isset($_GET['error'])) {
+                    // If submit empty field
+                    if($_GET['error'] == "emptyfields"){
+                        echo '<p class="login_error">Please fill all the fields!</p>';
+                    }
+                    // If submit wrong password
+                    else if($_GET['error'] == "wrongpassword"){
+                        echo '<p class="login_error">Please input a correct password!</p>';
+					}
+					// If no user with this username
+                    else if($_GET['error'] == "nouser"){
+                        echo '<p class="login_error">There is no such a username!</p>';
+                    }
+                else {
+                echo '<p style="opacity: 0.5; text-align: center;">Please fill in this form to login!</p>';
+					}
+				}
+            ?>
+
 			<!-- Input email -->
 			<div class="txtb">
-				<input type="text" name="e_mail">
-				<span data-placeholder="Email"></span>
+				<input type="text" name="username">
+				<span data-placeholder="Username"></span>
 			</div>
 
 			<!-- Input password -->

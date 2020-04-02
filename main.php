@@ -22,13 +22,20 @@
 
     <!-- Capture button to start the game -->
     <div class="controller">
-        <button id="game_start" class="game_start_btn">Start the Game</button>
+        <button onclick="showText()" id="game_start" class="game_start_btn">Take a Photo</button>
         <a href="./index.php"><button class="home-btn">Back to Home</button></a>
     </div>
     
     <!-- Snapshot result -->
+    <p id="result_text"></p>
     <canvas id="snapshot_result" width="720" height="560"></canvas>
     
+    <script>
+        // Add text
+    function showText() {
+        document.getElementById("result_text").innerHTML = "This is your face according to the expression meter above.";
+    }
+    </script>
 </body>
 
 </html>

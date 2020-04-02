@@ -22,10 +22,10 @@ function startVideo() {
     var result = document.getElementById('snapshot_result'),
     context = result.getContext('2d');
     
-    document.getElementById("game_start").
-    addEventListener('click', function () {
-    context.drawImage(video, 0, 0, 720, 560);
+    document.getElementById("game_start").addEventListener('click', function () {
+        context.drawImage(video, 0, 0, 720, 560);
     });
+
 }
 
 // Add face detection canvas

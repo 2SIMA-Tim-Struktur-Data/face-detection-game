@@ -28,7 +28,7 @@ body{
 
 form h1{
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   font-weight: bold;
 }
 
@@ -69,6 +69,21 @@ form h1{
   transition: .5s;
 }
 
+.signup_error, .login_error {
+  text-align: center;
+  color: #9b0000;
+  font-style: italic;
+}
+
+.signup_success {
+  text-align: center;
+  color: #0b8500;
+  font-style: italic;
+}
+
+.user-link {
+  color: #0b149c;
+}
 .focus + span::before{
   top: -5px;
 }
