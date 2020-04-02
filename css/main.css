@@ -1,9 +1,10 @@
 body {
     margin: 0;
     padding: 0;
-    width: 100vw;
+    width: auto;
     height: 100vh;
     background-image: url(../img/face.gif);
+    overflow-x: hidden;
 }
 
 video #video {
@@ -29,21 +30,20 @@ canvas#snapshot_result {
     top: 50px;
 }
 
-.game_start_btn {
+.game_start_btn, .home-btn {
     padding: 10px;
     background-color: blue;
     color: wheat;
     border-radius: 5px;
-    position: absolute;
 }
 
-.game_start_btn:hover {
+.game_start_btn:hover, .home-btn:hover {
     background-color: tomato;
     color: black;
     transition: .2s ease;
 }
 
-.game_start_btn:active {
+.game_start_btn:active, .home-btn:active {
     background-color: aquamarine;
 }
 

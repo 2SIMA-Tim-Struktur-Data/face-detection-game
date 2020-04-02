@@ -8,9 +8,8 @@
     <link rel="stylesheet" href="css/homepage.css">
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="js/homepage.js">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Home | Face Detection Game</title>
 </head>
 
 <body>
@@ -35,7 +34,13 @@
                     <br>
 
                     <p class="card-text">How to play: You need to make a expression based on the question. You only have 5 seconds to make that expression. The closest expression will get the highest expression. Good Luck</p>
-                    <a href="./main.php" class="btn btn-outline-warning">Start</a>
+                    
+                    <?php 
+                        if (isset($_SESSION['username'])) {
+                            echo'<a href="./main.php" class="btn btn-outline-warning">Start</a>';
+                        } 
+                    ?>
+                    
                 </div>
             </div>
         </div>
