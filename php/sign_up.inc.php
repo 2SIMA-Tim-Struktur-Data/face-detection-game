@@ -51,12 +51,14 @@ if (isset($_POST['signup-submit'])){
             exit();
         }
 
-        // Bind variables to the prepared statement as parameters
         else {
+            // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt,"s", $username);
+
             // Attempt to execute the prepared statement
             mysqli_stmt_execute($stmt);
-            /* store result */
+            
+            // store result
             mysqli_stmt_store_result($stmt);
             $resultCheck = mysqli_stmt_num_rows($stmt);
             // If username is already taken

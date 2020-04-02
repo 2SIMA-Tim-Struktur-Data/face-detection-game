@@ -21,29 +21,38 @@
             exit();
         }
         else {
+            // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "s", $email);
+
+            // Attempt to execute the prepared statement
             mysqli_stmt_execute($stmt);
+
+            // store result
             $result = mysqli_stmt_get_result($stmt);
             if($row = mysqli_fetch_array($result)) {
+                // Check password
                 $passwordCheck = password_verify($typePassword, $row['user_password']);
+
+                // If password false return to login page
                 if ($passwordCheck == false) {
                     header("Location: ../login.php?error=wrongpassword");
                     exit();
                 }
+
+                // If password correct start session and return to homepage
                 else if ($passwordCheck == true) {
                     session_start();
                     $_SESSION['user_id'] = $row['username'];
                     $_SESSION['username'] = $row['user_id'];
 
                     if($_SESSION["username"]) {
-                        header("Location: ../index.php?login=success");
-                        
+                        header("Location: ../index.php?login=success"); 
                        
                     }
 
                 }
                 else {
-                    header("Location: ../login.php?error=wrongpassword");
+                    header("Location: ../login.php?error=sql error");
                     exit();
                 }
             }
