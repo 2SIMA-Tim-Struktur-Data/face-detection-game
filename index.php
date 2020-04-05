@@ -40,7 +40,7 @@
                             echo'<a href="./main.php" class="btn btn-outline-warning">Start</a>';
                         } 
                     ?>
-                    <p>sgsgag</p>
+            
                     
                 </div>
             </div>
