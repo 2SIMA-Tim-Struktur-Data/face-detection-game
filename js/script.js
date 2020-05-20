@@ -1,4 +1,4 @@
-var video = document.getElementById('video')
+const video = document.getElementById('video');
 
 // Include face detection api
 Promise.all([
@@ -6,45 +6,133 @@ Promise.all([
     faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
     faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
     faceapi.nets.faceExpressionNet.loadFromUri('/models')
-]).then(startVideo)
+]).then(startVideo);
 
 // Start video function
 function startVideo() {
     navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
-    
-    // Capture image
+
     navigator.getUserMedia({
-        video: true,
-        audio: false
-    }, stream => video.srcObject = stream,
-    err => console.error(err)
-    )
-    var result = document.getElementById('snapshot_result'),
-    context = result.getContext('2d');
-    
-    document.getElementById("game_start").addEventListener('click', function () {
-        context.drawImage(video, 0, 0, 720, 560);
-    });
+            video: true,
+            audio: false
+        }, stream => video.srcObject = stream,
+        err => console.error(err)
+    );
 
 }
 
 // Add face detection canvas
-video.addEventListener('play', () => {
-    const canvas = faceapi.createCanvasFromMedia(video)
-    document.body.append(canvas)
+video.addEventListener("play", () => {
+    const canvas = faceapi.createCanvasFromMedia(video);
+    let container = document.querySelector(".container");
+    
+    // document.body.append(canvas)
+    container.append(canvas);
+
     const displaySize = {
         width: video.width,
         height: video.height
-    }
-    
-    faceapi.matchDimensions(canvas, displaySize)
+    };
+
+    faceapi.matchDimensions(canvas, displaySize);
+
     setInterval(async () => {
-        const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
-        const resizedDetections = faceapi.resizeResults(detections, displaySize)
-        canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
-        faceapi.draw.drawDetections(canvas, resizedDetections)
-        faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
-        faceapi.draw.drawFaceExpressions(canvas, resizedDetections)
-    }, 100)
+        const detectionsFace = await faceapi
+            .detectSingleFace(video, new faceapi.TinyFaceDetectorOptions())
+            .withFaceLandmarks()
+            .withFaceExpressions()
+        const resizedDetections = faceapi.resizeResults(detectionsFace, displaySize)
+        console.log(resizedDetections);
+
+        canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+
+        faceapi.draw.drawDetections(canvas, resizedDetections);
+        // faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
+        // faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
+
+        const expressions = resizedDetections.expressions;
+        const maxValue = Math.max(...Object.values(expressions));
+        const emotion = Object.keys(expressions).filter(
+            item => expressions[item] === maxValue
+        );
+        const score = (maxValue * 100).toFixed(1);
+        
+        if (resizedDetections && Object.keys(resizedDetections).length > 0) {
+            // Generate question
+            document.getElementById("emotion").innerText = `You are now feeling ${emotion[0]}`;
+            document.getElementById("score").innerText = `Your score is ${score}`
+            
+        }
+        
+    }, 100);
     
 })
+
+// Capture image
+$('#playagain').hide();
+$('#savebutton').hide();
+$('#snapshot_result').hide();
+
+$(document).ready(function () {
+    $(document).on('click', '#startbutton', function () {
+        var result = document.getElementById('snapshot_result'),
+            context = result.getContext('2d'),
+            dataURL = result.toDataURL("image/jpeg", 1);
+
+        //Pause Video
+        // video.pause();
+
+        //Hide startbutton and show playagain
+        $('#playagain').show();
+        $('#savebutton').show();
+        $('#startbutton').hide();
+
+        // Draw snapshot canvas
+        context.drawImage(video, 0, 0, 720, 560);
+        
+        // Show snapshot and hide video
+        $('#video').hide();
+        $('#snapshot_result').show();
+
+        // Send File
+        // $.ajax({
+        //     type: "POST",
+        //     url: "/../php/ajaxUpload.php",
+        //     data: {
+        //         imgBase64: dataURL, // image
+        //         userid: "<?php echo ($_SESSION['username']); ?>"
+
+        //     },
+        // })
+        // .done(function (o) {  // success function 
+        //     alert("Photo Saved Successfully!");
+        // });
+        //e.preventDefault();
+        //var data = $(this).serialize();
+    });
+
+});
+
+
+//Refresh Page
+function playAgain() {
+    window.location.reload();
+}
+
+// $(document).on('click', '#playagain', function () {
+//     $("#video").show();
+//     $("#snapshot_result").hide();
+//     $("#startbutton").show();
+//     $("#playagain").hide();
+// });
+// startbutton.addEventListener('click', function(ev) {
+//     if(startbutton.innerText==="CAPTURE")
+//   {
+//       takepicture();
+//   }
+//   else
+//   {
+//     startbutton.innerText= "CAPTURE";
+//   }
+//   ev.preventDefault();
+// }, false);
