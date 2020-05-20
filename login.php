@@ -18,7 +18,7 @@
 		<?php include_once("./navbar.php")?>
 
 		<!-- Login form -->
-		<form action="./php/login.inc.php" method="post" class="form login-form">
+		<form action="./php/login.inc.php" method="POST" class="form login-form">
 			<h1>Login</h1>
 
 			<!-- Error alert -->
