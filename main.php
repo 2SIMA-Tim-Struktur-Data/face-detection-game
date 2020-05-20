@@ -24,8 +24,7 @@
         <video id="video" width="720" height="560" autoplay muted>
         </video>
     </div>
-    <form action="./php/action.php" method="POST">
-        <canvas id="snapshot_result" width="720" height="560"></canvas>
+        <canvas id="snapshot_result" width="720" height="560" name="imgBase64"></canvas>
 
         <!-- Capture button to start the game -->
         <div class="controller">
@@ -34,13 +33,14 @@
             <button id="savebutton" class="save">Save Result</button>
             <a href="./index.php"><button class="home-btn">Back to Home</button></a>
         </div>
-    </form>
+    <!-- <form action="./php/ajaxUpload.php" method="POST">
+    </form> -->
 
     <!-- Snapshot result -->
     <div class="question"></div>
     <div id="emotion"></div>
     <div id="score"></div>
-    <div id="printresult"></div>
+    <div id="seeresult"></div>
         
 
     <script defer src="js/face-api.min.js"></script>

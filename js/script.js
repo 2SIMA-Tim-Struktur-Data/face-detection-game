@@ -77,7 +77,7 @@ $(document).ready(function () {
     $(document).on('click', '#startbutton', function () {
         var result = document.getElementById('snapshot_result'),
             context = result.getContext('2d'),
-            dataURL = result.toDataURL("image/jpeg", 1);
+            dataURL = result.toDataURL("image/png", 0.85);
 
         //Pause Video
         // video.pause();
@@ -95,15 +95,22 @@ $(document).ready(function () {
         $('#snapshot_result').show();
 
         // Send File
-        // $.ajax({
-        //     type: "POST",
-        //     url: "/../php/ajaxUpload.php",
-        //     data: {
-        //         imgBase64: dataURL, // image
-        //         userid: "<?php echo ($_SESSION['username']); ?>"
+        $.ajax({
+            type: "POST",
+            url: "/../php/ajaxUpload.php",
+            data: {
+                photo: dataURL, // image
+                username: "<?php echo ($_SESSION['user_id']); ?>"
 
-        //     },
-        // })
+            },
+            success: function(data){
+                $("#seeresult").html('Submitted successfully' + data);
+            },
+            error:function(){
+                alert("failure");
+                $("#seeresult").html('There is error while submit');
+            }
+        });
         // .done(function (o) {  // success function 
         //     alert("Photo Saved Successfully!");
         // });
