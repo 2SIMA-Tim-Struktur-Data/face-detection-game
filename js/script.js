@@ -1,5 +1,11 @@
 const video = document.getElementById('video');
 
+// Hide unnecessary
+$('#playagain').hide();
+$('#savebutton').hide();
+$('#snapshot_result').hide();
+
+
 // Include face detection api
 Promise.all([
     faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
@@ -25,7 +31,7 @@ function startVideo() {
 video.addEventListener("play", () => {
     const canvas = faceapi.createCanvasFromMedia(video);
     let container = document.querySelector(".container");
-    
+
     // document.body.append(canvas)
     container.append(canvas);
 
@@ -52,72 +58,70 @@ video.addEventListener("play", () => {
 
         const expressions = resizedDetections.expressions;
         const maxValue = Math.max(...Object.values(expressions));
+        
         const emotion = Object.keys(expressions).filter(
             item => expressions[item] === maxValue
         );
         const score = (maxValue * 100).toFixed(1);
-        
+
         if (resizedDetections && Object.keys(resizedDetections).length > 0) {
             // Generate question
-            document.getElementById("emotion").innerText = `You are now feeling ${emotion[0]}`;
-            document.getElementById("score").innerText = `Your score is ${score}`
-            
-        }
-        
-    }, 100);
-    
-})
+            document.getElementById("myEmotion").innerText = `You are now feeling ${emotion[0]}`;
+            document.getElementById("myScore").innerText = `Your score is ${score}`
 
-// Capture image
-$('#playagain').hide();
-$('#savebutton').hide();
-$('#snapshot_result').hide();
+        }
+
+    }, 100);
+
+});
+
 
 $(document).ready(function () {
-    $(document).on('click', '#startbutton', function () {
-        var result = document.getElementById('snapshot_result'),
-            context = result.getContext('2d'),
-            dataURL = result.toDataURL("image/png", 0.85);
+    // Declare Global Variable
+    var result = document.getElementById('snapshot_result'),
+    context = result.getContext('2d'),
+    dataUrl = result.toDataURL("image/png");
 
+    // Capture Image
+    $(document).on('click', '#startbutton', function () {
         //Pause Video
         // video.pause();
+        
+        // Draw snapshot canvas
+        context.drawImage(video, 0, 0, 720, 560);
 
         //Hide startbutton and show playagain
         $('#playagain').show();
         $('#savebutton').show();
         $('#startbutton').hide();
 
-        // Draw snapshot canvas
-        context.drawImage(video, 0, 0, 720, 560);
-        
+
         // Show snapshot and hide video
         $('#video').hide();
         $('#snapshot_result').show();
 
-        // Send File
+
+    });
+    // Send File
+    $(document).one('click', '#savebutton', function () {
         $.ajax({
             type: "POST",
-            url: "/../php/ajaxUpload.php",
+            url: "/../php/savepicture.php?id=<?php echo $_SESSION[$username}?>",
             data: {
-                photo: dataURL, // image
-                username: "<?php echo ($_SESSION['user_id']); ?>"
-
+                imgBase64: dataUrl, // image
+           },
+            success: function (data) {
+                console.log(data);
+                $("#seeresult").html(data);
             },
-            success: function(data){
-                $("#seeresult").html('Submitted successfully' + data);
-            },
-            error:function(){
+            error: function () {
                 alert("failure");
                 $("#seeresult").html('There is error while submit');
             }
+        }).done(function(msg) {
+            console.log("saved");
         });
-        // .done(function (o) {  // success function 
-        //     alert("Photo Saved Successfully!");
-        // });
-        //e.preventDefault();
-        //var data = $(this).serialize();
     });
-
 });
 
 

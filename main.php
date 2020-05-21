@@ -38,8 +38,8 @@
 
     <!-- Snapshot result -->
     <div class="question"></div>
-    <div id="emotion"></div>
-    <div id="score"></div>
+    <div id="myEmotion"></div>
+    <div id="myScore"></div>
     <div id="seeresult"></div>
         
 
