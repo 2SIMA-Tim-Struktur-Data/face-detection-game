@@ -19,29 +19,39 @@
     }
     ?>
 
+    <!-- Title -->
+    <h1>Face Expression Game</h1>
     <!-- Webcam screen-->
     <div class="container">
-        <video id="video" width="720" height="560" autoplay muted>
+        <video id="video" width="630" height="490" autoplay muted>
         </video>
     </div>
-        <canvas id="snapshot_result" width="720" height="560" name="imgBase64"></canvas>
+    <canvas id="snapshot_result" width="630" height="490"></canvas>
 
-        <!-- Capture button to start the game -->
-        <div class="controller">
-            <button id="startbutton" class="game_start_btn">Take a Photo</button>
-            <button onclick="playAgain()" id="playagain" class="again">Play Again</button>
-            <button id="savebutton" class="save">Save Result</button>
-            <a href="./index.php"><button class="home-btn">Back to Home</button></a>
-        </div>
+    <!-- Capture button to start the game -->
+    <div class="controller">
+        <button id="startbutton" class="game_start_btn">Take a Photo</button>
+        <button onclick="playAgain()" id="playagain" class="again">Play Again</button>
+        <button id="savebutton" class="save">Save Result</button>
+        <a href="./index.php"><button id="homebutton" class="home-btn">Back to Home</button></a>
+    </div>
     <!-- <form action="./php/ajaxUpload.php" method="POST">
     </form> -->
 
     <!-- Snapshot result -->
-    <div class="question"></div>
-    <div id="myEmotion"></div>
-    <div id="myScore"></div>
-    <div id="seeresult"></div>
-        
+    <div id="progressBar">
+        <div class="bar"></div>
+    </div>
+    <div class="box">
+        <div class="text">
+            <h1 id="question"></h1>
+            <p id="myEmotion"></p>
+            <p id="myScore"></p>
+            <p id="undetect"></p>
+            <p id="seeresult"></p>
+        </div>
+    </div>
+
 
     <script defer src="js/face-api.min.js"></script>
 

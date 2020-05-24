@@ -7,29 +7,25 @@
 	// Fetch photo only if product id is not empty
 	if (!empty($userId)) {
 
-		$resultScore = $_POST['gameScore'];
-		$resultEmotion = $_POST['playerEmotion'];
+		$resultScore = $_POST['myScore'];
+		$resultEmotion = $_POST['myEmotion'];
 		$rawData = $_POST['imgBase64'];
-		echo "<img src='".$rawData."' />"; // Show photo
  
 		list($type, $rawData) = explode(';', $rawData);
 		list(, $rawData)      = explode(',', $rawData);
 		$unencoded = base64_decode($rawData);
 		
+		date_default_timezone_set('Asia/Jakarta');
+		
 		$filename = $userId.'_'.date('dmYHi').'_'.rand(1111,9999).'.png'; // Set a filename
 		file_put_contents("../img/snapshots/$filename", base64_decode($rawData)); // Save photo to folder
  
 		// Update product database with the new filename
-		$sql = "INSERT INTO `snapshots`(`USER_NO`,`IMAGE_PATH`,`SCORE`,`EMOTION`) VALUES ('$userId','$filename','$resultScore','$resultEmotion')";
+		$sql = "INSERT INTO `snapshots`(`user_no`,`image_path`,`score`,`emotion`) VALUES ('$userId','$filename','$resultScore','$resultEmotion')";
         
-        if ($conn->query($sql) === TRUE) {
-            echo "data inserted";
-        }
-        else 
-        {
-            echo "failed";
-        }
- 
+        if ($conn->query($sql) === FALSE) {
+			echo "Failed to save.";
+		}
  
 	} 
 	
