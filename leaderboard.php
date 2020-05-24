@@ -1,4 +1,13 @@
-<?php session_start() ?>
+<?php 
+session_start(); 
+include_once('php/db_handler.php');
+
+$sql_rank = "SELECT `username`, (MAX(`score`)) AS `high_score`, (rank() OVER(ORDER BY `high_score` DESC)) AS `all_ranks`
+FROM `snapshots` LEFT JOIN `users` ON `user_no` = `user_id` GROUP BY `user_no` ORDER BY `all_ranks` ";
+$result = mysqli_query($conn,$sql_rank);
+$resultCheck = mysqli_num_rows($result);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,51 +41,21 @@
             <div class="list__body">
                 <table class="list__table">
                     <tbody>
-                        <tr class="list__row"
-                            data-image="https://www.formula1.com/content/fom-website/en/drivers/lewis-hamilton/_jcr_content/image.img.1920.medium.jpg/1533294345447.jpg"
-                            data-nationality="British" data-dob="1985-01-07" data-country="gb">
-                            <td class="list__cell"><span class="list__value">1</span></td>
-                            <td class="list__cell"><span class="list__value">Lewis Hamilton</span></td>
-                            <td class="list__cell"><span class="list__value"></span></td>
-                            <td class="list__cell"><span class="list__value">95</span><small
-                                    class="list__label">Points</small></td>
-                        </tr>
-                        <tr class="list__row"
-                            data-image="https://www.formula1.com/content/fom-website/en/drivers/sebastian-vettel/_jcr_content/image.img.1920.medium.jpg/1533294389985.jpg"
-                            data-nationality="German" data-dob="1987-07-03" data-country="de">
-                            <td class="list__cell"><span class="list__value">2</span></td>
-                            <td class="list__cell"><span class="list__value">Sebastian Vettel</span></td>
-                            <td class="list__cell"></td>
-                            <td class="list__cell"><span class="list__value">78</span><small
-                                    class="list__label">Points</small></td>
-                        </tr>
-                        <tr class="list__row"
-                            data-image="https://www.formula1.com/content/fom-website/en/drivers/valtteri-bottas/_jcr_content/image.img.1920.medium.jpg/1536135115661.jpg"
-                            data-nationality="Finnish" data-dob="1989-08-28" data-country="fi">
-                            <td class="list__cell"><span class="list__value">3</span></td>
-                            <td class="list__cell"><span class="list__value">Valtteri Bottas</span></td>
-                            <td class="list__cell"></td>
-                            <td class="list__cell"><span class="list__value">58</span><small
-                                    class="list__label">Points</small></td>
-                        </tr>
-                        <tr class="list__row"
-                            data-image="https://www.formula1.com/content/fom-website/en/drivers/kimi-raikkonen/_jcr_content/image.img.1920.medium.jpg/1544714269466.jpg"
-                            data-nationality="Finnish" data-dob="1979-10-17" data-country="fi">
-                            <td class="list__cell"><span class="list__value">4</span></td>
-                            <td class="list__cell"><span class="list__value">Kimi Räikkönen</span></td>
-                            <td class="list__cell"></td>
-                            <td class="list__cell"><span class="list__value">48</span><small
-                                    class="list__label">Points</small></td>
-                        </tr>
-                        <tr class="list__row"
-                            data-image="https://www.formula1.com/content/fom-website/en/drivers/daniel-ricciardo/_jcr_content/image.img.1920.medium.jpg/1544714300924.jpg"
-                            data-nationality="Australian" data-dob="1989-07-01" data-country="au">
-                            <td class="list__cell"><span class="list__value">5</span></td>
-                            <td class="list__cell"><span class="list__value">Daniel Ricciardo</span></td>
-                            <td class="list__cell"></td>
-                            <td class="list__cell"><span class="list__value">47</span><small
-                                    class="list__label">Points</small></td>
-                        </tr>
+                        <?php 
+                        if($resultCheck > 0){
+                            while($row = mysqli_fetch_assoc($result)){
+                                echo "
+                                <tr class='list__row'>
+                                    <td class='list__cell'><span class='list__value'>".$row['all_ranks']."</span></td>
+                                    <td class='list__cell'><span class='list__value'>".$row['username']."</span></td>
+                                    <td class='list__cell'><span class='list__value'></span></td>
+                                    <td class='list__cell'><span class='list__value'>".$row['high_score']."</span><small class='list__label'>Points</small></td>
+                                </tr>";
+                            };
+                        };
+                        
+                        ?>
+                        
                     </tbody>
                 </table>
             </div>
