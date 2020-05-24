@@ -7,6 +7,10 @@ body {
     overflow-x: hidden;
 }
 
+.container {
+    position: relative;
+    text-align: center;
+} 
 video #video {
     margin: 0;
     padding: 0;
@@ -16,10 +20,23 @@ video #video {
 canvas {
     position: absolute;
     top: 0;
-    left: 0;
+    left: 50%;
+    transform: translate(-50%,0);
 }
 canvas#snapshot_result {
     position: relative;
+}
+
+.controller, .text {
+    text-align: center;
+}
+
+.text {
+    padding: 20px;
+    background: rgba(255,255,255,0.5);
+}
+.text p {
+    font-size: 1.5rem;
 }
 .game_start_btn, .home-btn {
     padding: 10px;
@@ -47,38 +64,31 @@ p#result_text {
 
 .box {
     margin: 0 auto;
-    height: 200px;
-    width: 200px;
+    width: 630px;
     position: relative;
-    border: dashed black 5px;
+    border: dashed black 2px;
     border-radius: 5px;
-    animation: spin 2s linear;
 }
 
 .content {
     padding-top: 15em;
 }
 
-@keyframes spin {
-    100% {
-        transform: rotate(360deg) scale(1.2);
-    }
-}
-
-.box:after {
-    content: '';
-    position: absolute;
-    top: -5px;
-    left: 60px;
-    height: 240px;
-    width: 60px;
-}
-
-.box:before {
-    content: '';
-    position: absolute;
-    top: 60px;
-    left: -5px;
-    height: 60px;
-    width: 240px;
-}
+#progressBar {
+    width: 500px;
+    margin: 10px auto;
+    height: 22px;
+    background-color: rgb(52, 78, 192);
+    border-radius: 50px;
+    border: 1px solid #000000;
+  }
+  
+  #progressBar div {
+    height: 100%;
+    text-align: right;
+    padding: 0 10px;
+    line-height: 22px; /* same as #progressBar height if we want text middle aligned */
+    background-color: rgb(233, 77, 77);
+    border-radius: 50px;
+    box-sizing: border-box;
+  }
