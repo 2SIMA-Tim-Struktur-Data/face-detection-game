@@ -6,8 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
     <link rel="stylesheet" href="css/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
     <title>Play the Game | Face Detection Game</title>
 </head>
 
@@ -18,38 +18,51 @@
         header("Location: ./login.php");
     }
     ?>
-
-    <!-- Title -->
-    <h1>Face Expression Game</h1>
-    <!-- Webcam screen-->
     <div class="container">
-        <video id="video" width="630" height="490" autoplay muted>
-        </video>
-    </div>
-    <canvas id="snapshot_result" width="630" height="490"></canvas>
-
-    <!-- Capture button to start the game -->
-    <div class="controller">
-        <button id="startbutton" class="game_start_btn">Take a Photo</button>
-        <button onclick="playAgain()" id="playagain" class="again">Play Again</button>
-        <button id="savebutton" class="save">Save Result</button>
-        <a href="./index.php"><button id="homebutton" class="home-btn">Back to Home</button></a>
-    </div>
-    <!-- <form action="./php/ajaxUpload.php" method="POST">
-    </form> -->
-
-    <!-- Snapshot result -->
-    <div id="progressBar">
-        <div class="bar"></div>
-    </div>
-    <div class="box">
-        <div class="text">
-            <h1 id="question"></h1>
-            <p id="myEmotion"></p>
-            <p id="myScore"></p>
-            <p id="undetect"></p>
-            <p id="seeresult"></p>
+        
+        <div class="row">
+            <div class="col-xs-12">
+                <!-- Title -->
+                <h1 class="title center">Face Expression Game</h1>
+            </div>
+            <div class="col-md-7 co1-xs-12">
+                <!-- Webcam screen-->
+                <div class="web_cam center">
+                    <video id="video" width="630" height="490" autoplay muted>
+                    </video>
+                </div>
+                <canvas id="snapshot_result" width="630" height="490"></canvas>
+                <div id="progressBar">
+                    <div class="bar"></div>
+                </div>
+                <!-- Capture button to start the game -->
+                <div class="controller">
+                    <button id="startbutton" class="game_start_btn">Start Game</button>
+                    <button onclick="playAgain()" id="playagain" class="again">Play Again</button>
+                    <button id="savebutton" class="save">Save</button>
+                    <a href="./index.php"><button id="homebutton" class="home-btn">Back to Home</button></a>
+                </div>
+            </div>
+        
+            <div class="col-md-5 co1-xs-12">
+                
+                <!-- Snapshot result -->
+                <div class="box">
+                    <div class="text">
+                        <p class="manual"><em>Make sure the blue box is appearing. The blue box will detect your expression. <br><br>
+                            How to play : <br> Click <b>'Start Game'</b> to play. Question will be shown below this text. You only have 5 seconds to make the expression based on the question. After that, you may see your photo's result with your score and expression. If you'd like to save the result to your history, click <b>'Save'</b>. Good Luck and Have Fun !</em> 
+                        </p>
+                        <h1 id="question"></h1>
+                        <p id="myEmotion"></p>
+                        <p id="myScore"></p>
+                        <p id="undetect"></p>
+                        <p id="seeresult"></p>
+                    </div>
+                </div>
+            </div>
         </div>
+
+
     </div>
 
 
