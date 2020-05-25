@@ -12,10 +12,10 @@
 </head>
 
 <body>
+	<!-- Navbar -->
+	<?php include_once("./navbar.php")?>
 	<section class="wrapper login">
 
-		<!-- Navbar -->
-		<?php include_once("./navbar.php")?>
 
 		<!-- Login form -->
 		<form action="./php/login.inc.php" method="POST" class="form login-form">

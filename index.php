@@ -5,10 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/homepage.css">
     <link rel="stylesheet" href="css/navbar.css">
-    <link rel="stylesheet" href="js/homepage.js">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <title>Home | Face Detection Game</title>
 </head>
 
@@ -18,7 +17,7 @@
 
 
         <div class="container">
-            <div class="card text-center" style="width: 25rem;">
+            <div class="card text-center" >
                 <div class="card-body">
                     <?php 
                         if (isset($_SESSION['username'])) {

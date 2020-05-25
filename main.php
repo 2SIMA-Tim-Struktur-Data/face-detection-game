@@ -25,7 +25,7 @@
                 <!-- Title -->
                 <h1 class="title center">Face Expression Game</h1>
             </div>
-            <div class="col-md-7 co1-xs-12">
+            <div class="col-md-7 col-xs-12">
                 <!-- Webcam screen-->
                 <div class="web_cam center">
                     <video id="video" width="630" height="490" autoplay muted>
@@ -68,7 +68,7 @@
 
     <script defer src="js/face-api.min.js"></script>
 
-    <script defer src="js/script.js"></script>
+    <script defer src="js/main.js"></script>
 </body>
 
 </html>

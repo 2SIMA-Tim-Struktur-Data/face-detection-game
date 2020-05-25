@@ -1,17 +1,26 @@
 body {
-  margin: 0;
-  padding: 0;
-  background: url(../img/many.gif);
+    margin: 0;
+    padding: 0;
+    background: url(../img/many.gif);
 }
 
 .container {
-  text-align: center;
-  padding: 50px;
+    text-align: center;
+    padding: 50px;
 }
 
 .container .card {
-  background-color: #636363;
-  color: #ffffff;
-  margin: auto;
-  width: 700px;
+    background-color: #636363;
+    color: #ffffff;
+    margin: auto;
+    width: 25rem;
+}
+
+@media screen and (max-width: 435px) {
+    .container {
+        padding: 50px 20px;
+    }
+    .container .card {
+        width: 17rem;
+    }
 }
