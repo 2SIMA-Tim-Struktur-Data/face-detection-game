@@ -4,6 +4,8 @@ const video = document.getElementById('video');
 $('#playagain').hide();
 $('#savebutton').hide();
 $('#snapshot_result').hide();
+$('#myScore').hide();
+$('#myEmotion').hide();
 
 // Include face detection api
 Promise.all([
@@ -28,10 +30,10 @@ function startVideo() {
 // Add face detection canvas
 video.addEventListener("play", () => {
     const canvas = faceapi.createCanvasFromMedia(video);
-    let container = document.querySelector(".container");
+    let web_cam = document.querySelector(".web_cam");
 
     // insert canvas to container
-    container.append(canvas);
+    web_cam.append(canvas);
 
     const displaySize = {
         width: video.width,
@@ -59,7 +61,6 @@ video.addEventListener("play", () => {
 
         faceapi.draw.drawDetections(canvas, resizedDetections)
         faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
-        faceapi.draw.drawFaceExpressions(canvas, resizedDetections)
         
         if (resizedDetections[0] && Object.keys(resizedDetections[0]).length > 0 && expressions !== null & expressions!== undefined) {
             // Generate question
@@ -69,13 +70,13 @@ video.addEventListener("play", () => {
             );
             
             if(question == emotion[0]){
-                score = (maxValue * 100).toFixed(1);   
+                score = (maxValue * 1000).toFixed(2);   
                 playerEmotion = emotion[0];
                 playerScore = score;
                 fetchResult();
             }
             else if(question !== emotion[0]) {
-                score = (maxValue * 30).toFixed(1);
+                score = (maxValue * 400).toFixed(2);
                 playerEmotion = emotion[0];
                 playerScore = score;
                 fetchResult();
@@ -98,6 +99,7 @@ video.addEventListener("play", () => {
     
     var listEmotion = ['angry','disgusted','fearful','happy','neutral','sad','surprised']
     var question = listEmotion[Math.floor(Math.random() * listEmotion.length)];
+    
 
     // Fetch score and emotion result from face detection
     function fetchResult(){
@@ -107,6 +109,7 @@ video.addEventListener("play", () => {
         document.getElementById("myEmotion").innerText = `You are now feeling ${fetchEmotion}`;
     }
 
+    
     var result = document.getElementById('snapshot_result'),
     context = result.getContext('2d'),
     dataUrl='';
@@ -130,6 +133,7 @@ video.addEventListener("play", () => {
 
             // Show
             $('#myScore').show();
+            $('#myEmotion').show();
             $('#snapshot_result').show();
             $('#playagain').show();
             $('#savebutton').show();
