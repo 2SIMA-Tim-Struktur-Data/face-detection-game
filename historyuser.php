@@ -36,7 +36,7 @@ $resultCheck = mysqli_num_rows($result);
                                         <time>".$row['created_at']."</time>
                                         <div class='discovery'>
                                             <img width='70px' onclick='openModal();' class='myImage' src='img/snapshots/".$row['image_path']."' />
-                                            <p>You Are ".$row['emotion']."</p>
+                                            <p>You are ".$row['emotion']."</p>
                                         </div>
                                         <div class='scientist'>
                                             <h1>".$row['score']."</h1>
