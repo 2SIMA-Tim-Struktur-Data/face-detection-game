@@ -2,11 +2,10 @@
 session_start(); 
 include_once('php/db_handler.php');
 
-$sql_rank = "SELECT `username`, (MAX(`score`)) AS `high_score`, (rank() OVER(ORDER BY `high_score` DESC)) AS `all_ranks`
-FROM `snapshots` LEFT JOIN `users` ON `user_no` = `user_id` GROUP BY `user_no` ORDER BY `all_ranks` ";
+$sql_rank = "SELECT `username`, (MAX(`score`)) AS `high_score`, (dense_rank() OVER(ORDER BY `high_score` DESC)) AS `my_rank`
+FROM `snapshots` LEFT JOIN `users` ON `user_no` = `user_id` GROUP BY `user_no` ORDER BY `my_rank` ";
 $result = mysqli_query($conn,$sql_rank);
 $resultCheck = mysqli_num_rows($result);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +35,24 @@ $resultCheck = mysqli_num_rows($result);
         <div class="list">
             <div class="list__header">
                 <h5>Result</h5>
-                <h1>Face Recognition</h1>
+                <h1>Face Expression Game</h1>
+                <?php 
+                    if( isset( $_SESSION['user_id'])){
+                        $thisUser = $_SESSION['user_id'];
+                        $sql_myrank = "SELECT user.`my_rank` FROM ($sql_rank) AS user WHERE `username` = '".$thisUser."' ";
+                        $result_myrank = mysqli_query($conn, $sql_myrank);
+                        $resultmyrankCheck = mysqli_num_rows($result_myrank);
+                        
+                        if($resultmyrankCheck > 0 && !empty($result_myrank)){
+                            $row = mysqli_fetch_array($result_myrank);
+                            echo "<p>My Rank : ".$row['my_rank']." </p>";
+                        }
+                        else{
+                            echo "<span>You don't have a rank... Play the game now!</span>";
+                        }
+                        
+                    } 
+                ?>
             </div>
             <div class="list__body">
                 <table class="list__table">
@@ -46,7 +62,7 @@ $resultCheck = mysqli_num_rows($result);
                             while($row = mysqli_fetch_assoc($result)){
                                 echo "
                                 <tr class='list__row'>
-                                    <td class='list__cell'><span class='list__value'>".$row['all_ranks']."</span></td>
+                                    <td class='list__cell'><span class='list__value'>".$row['my_rank']."</span></td>
                                     <td class='list__cell'><span class='list__value'>".$row['username']."</span></td>
                                     <td class='list__cell'><span class='list__value'></span></td>
                                     <td class='list__cell'><span class='list__value'>".$row['high_score']."</span><small class='list__label'>Points</small></td>
