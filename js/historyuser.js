@@ -25,12 +25,8 @@ function callbackFunc() {
 window.addEventListener("load", callbackFunc);
 window.addEventListener("scroll", callbackFunc);
 
-// Open the Modal
-function openModal() {
-  document.getElementById("myModal").style.display = "block";
-}
-
-// Close the Modal
-function closeModal() {
-  document.getElementById("myModal").style.display = "none";
-}
+function confirmation(id) {
+  if(confirm("Your history will be deleted")){
+    document.location.href = './php/deletehistory.php?photo_id='+id;
+  }
+};

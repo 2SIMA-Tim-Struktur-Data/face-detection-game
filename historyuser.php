@@ -5,7 +5,7 @@ include_once('php/db_handler.php');
 if( isset( $_SESSION['username'])){
     $thisUser = $_SESSION['username'];
 }   
-$sql_history = "SELECT `created_at`, `score`, `emotion` ,`image_path` FROM `snapshots` WHERE `user_no` = '".$thisUser."' ";
+$sql_history = "SELECT `photo_id`,`created_at`, `score`, `emotion` ,`image_path` FROM `snapshots` WHERE `user_no` = '".$thisUser."' ";
 $result = mysqli_query($conn,$sql_history);
 $resultCheck = mysqli_num_rows($result);
 
@@ -18,6 +18,7 @@ $resultCheck = mysqli_num_rows($result);
     <link rel="stylesheet" href="css/historyuser.css">
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="lightbox/css/lightbox.min.css">
     <title>History User | Face Detection Game</title>
 </head>
 
@@ -31,32 +32,45 @@ $resultCheck = mysqli_num_rows($result);
             <?php 
                 if($resultCheck > 0){
                     while($row = mysqli_fetch_assoc($result)){
-                        echo "  <li class='in-view'>
-                                    <div>
-                                        <time>".$row['created_at']."</time>
-                                        <div class='discovery'>
-                                            <img width='70px' onclick='openModal();' class='myImage' src='img/snapshots/".$row['image_path']."' />
-                                            <p>You are ".$row['emotion']."</p>
-                                        </div>
-                                        <div class='scientist'>
-                                            <h1>".$row['score']."</h1>
-                                            <span>Point</span>
-                                        </div>
-                                    </div>
-                                </li>";
-                        echo "  <div id='myModal' class='modal'>
-                                    <span class='close cursor' onclick='closeModal()'>&times;</span>
-                                    <div class='modal-content'>
-                                        <img src='img/snapshots/".$row['image_path']."'>
-                                    </div>
-                                </div>
-                        ";
-                        }
+            ?>
+            
+            <li class='in-view'>
+                <div>
+                    <time><?php echo $row['created_at']; ?></time>
+                    <div class='discovery'>
+                        <a href='img/snapshots/<?php echo $row['image_path']; ?>' data-lightbox="snapshots-<?php echo $row['photo_id']; ?>" data-title="
+                        
+                            <div class='process text-left mt-3'>
+                                <a href='img/snapshots/<?php echo $row['image_path']; ?>' download>
+                                    <button class='btn btn-primary mr-2'><img class='mr-2'src='download.svg' width='28px' style='filter: invert(1)'>Download</button>
+                                </a>
+                                <a href='javascript:confirmation(<?php echo $row['photo_id']; ?>)'>
+                                    <button class='btn btn-danger mx-2'>
+                                        <img class='mr-2'src='delete.svg' width='28px' style='filter: invert(1)'>Delete Record
+                                    </button>
+                                </a>
+                            </div>
+                        
+                        
+                        ">
+                            <img width='70px' class='myImage' src='img/snapshots/<?php echo $row['image_path']; ?>'>
+                        </a>
+                        <p>You are <?php echo $row['emotion']; ?></p>
+                    </div>
+                    <div class='scientist'>
+                        <h1><?php echo $row['score'];?></h1>
+                        <span>Point</span>
+                    </div>
+                </div>
+            </li>";
+
+            <?php
                     }
-                    else {
-                        echo "<div class='box'><h1>No History!</h1> <p>You haven't played a game...</p></div>";
-                    }
-                ?>
+                }
+                else {
+                    echo "<div class='box'><h1>No History!</h1> <p>You haven't played a game...</p></div>";
+                }
+            ?>
         </ul>
 
         <?php 
@@ -65,6 +79,7 @@ $resultCheck = mysqli_num_rows($result);
         
     </section>
     <script src="./js/historyuser.js"></script>
+    <script src="./lightbox/js/lightbox-plus-jquery.min.js"></script>
 </body>
 
 </html>
