@@ -5,7 +5,7 @@ include_once('php/db_handler.php');
 if( isset( $_SESSION['username'])){
     $thisUser = $_SESSION['username'];
 }   
-$sql_history = "SELECT `photo_id`, date_format(created_at, '%d %M %Y - %h:%i %p') AS `created_time`, `score`, `emotion` ,`image_path` FROM `snapshots` WHERE `user_no` = '".$thisUser."' ";
+$sql_history = "SELECT `photo_id`, date_format(CONVERT_TZ(`created_at`,'+00:00','+07:00'), '%d %M %Y - %h:%i %p') AS `created_time`, `score`, `emotion` ,`image_path` FROM `snapshots` WHERE `user_no` = '".$thisUser."' ";
 $result = mysqli_query($conn,$sql_history);
 $resultCheck = mysqli_num_rows($result);
 
