@@ -6,7 +6,6 @@
 	<meta charset="utf-8">
     <link rel="stylesheet" href="css/navbar.css">
 	<link rel="stylesheet" href="css/user.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
     <title>Sign Up | Face Detection Game</title>
@@ -42,7 +41,7 @@
                     }
                     // If submit invalid username
                     else if($_GET['error'] == "invalidusername"){
-                        echo '<p class="signup_error">Invalid username!</p>';
+                        echo '<p class="signup_error">Invalid username! <br> A username can only contain alphanumeric characters (letters A-Z, numbers 0-9)</p>';
                     }
                     // Passwords do not match
                     else if($_GET['error'] == "passwordcheck"){
@@ -55,7 +54,7 @@
                 }
                 else if (isset($_GET['signup'])) {
                     if($_GET['signup'] == "success"){
-                        echo '<p class="signup_success">Your account has already been added, please <a class="user-link" href="./login.php">log in here</a></p>';
+                        echo '<p class="signup_success">Your account has already been added. Please <a class="user-link" href="./login.php"><b>log in here</b></a></p>';
                     }
                 }
                 else {
@@ -91,7 +90,7 @@
             <button type="submit" name="signup-submit" class="submit-btn">Sign Up</button>
 
             <div class="bottom-text">
-                Already have an account? <a class="user-link" href="./login.php">Log In</a>
+                Already have an account? <a class="user-link" href="./login.php"><b>Log In</b></a>
             </div>
 
         </form>
@@ -109,7 +108,8 @@
         });
     </script>
 
-    <?php include("global_script.php")?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 </body>
 

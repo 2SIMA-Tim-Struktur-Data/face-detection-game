@@ -2,11 +2,12 @@ body {
     margin: 0;
     padding: 0;
     width: auto;
-    height: 100vh;
-    background-image: url(../img/face.gif);
+    background: url(../img/bg/face.gif) repeat;
+    background-size: contain;
     overflow: hidden;
+    font-family: sans-serif;
+    
 }
-
 .container {
     margin: 2rem 4rem;
 } 
@@ -89,7 +90,7 @@ p.manual {
 }
 
 #progressBar {
-    width: 720px;
+    width: 100%;
     margin: 10px auto;
     height: 22px;
     background-color: rgb(52, 78, 192);
@@ -106,20 +107,28 @@ p.manual {
     border-radius: 50px;
     box-sizing: border-box;
   }
-
-  @media only screen and (min-width: 991.999px) {
-    .col-md-7 {
+  @media only screen and (min-width: 1200px) {
+    body {
+        overflow-y: hidden;
+    }
+    .col-lg-7 {
         flex: 0 0 58.333333%;
         max-width: 58.333333%;
         position: relative;
     }
-    .col-md-5 {
+    .col-lg-5 {
         flex: 0 0 41.666667%;
         max-width: 41.666667%;
         position: relative;
     }
   }
   @media only screen and (min-width: 320px) {
+    body {
+        overflow-y: auto;
+    }
+    .box {
+        margin-top: 2rem;
+    }
     .col-xs-12 {
         width: 100%;
         position: relative;

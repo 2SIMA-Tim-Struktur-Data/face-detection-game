@@ -7,8 +7,7 @@
 }
 
 body{
-  background-image: url(../img/back.gif);
-  background-repeat: no-repeat;
+  background: url(../img/bg/back.gif) no-repeat;
   background-size: cover;
 }
 
@@ -80,7 +79,10 @@ form h1{
 }
 
 .user-link {
-  color: #0b149c;
+  color: #040b64;
+}
+.user-link:hover {
+  color: #212780;
 }
 .focus + span::before{
   top: -5px;

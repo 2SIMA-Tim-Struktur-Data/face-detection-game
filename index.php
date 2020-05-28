@@ -5,9 +5,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/homepage.css">
     <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
     <title>Home | Face Detection Game</title>
 </head>
 
@@ -32,7 +33,7 @@
                     
                     <br>
 
-                    <p class="card-text">How to play: You need to make a expression based on the question. You only have 5 seconds to make that expression. The closest expression will get the highest expression. Good Luck</p>
+                    <p class="card-text">How to play : Try to make an expression based on the question. You only have 5 seconds! The closest expression will get the highest score. Good Luck</p>
                     
                     <?php 
                         if (isset($_SESSION['username'])) {
@@ -50,7 +51,8 @@
 
     </main>
 
-    <?php require "./global_script.php"?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 
 </html>

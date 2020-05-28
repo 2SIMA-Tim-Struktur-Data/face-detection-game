@@ -25,7 +25,7 @@
                 <!-- Title -->
                 <h1 class="title center">Face Expression Game</h1>
             </div>
-            <div class="col-md-7 col-xs-12">
+            <div class="col-lg-7 col-xs-12">
                 <!-- Webcam screen-->
                 <div class="web_cam center">
                     <video id="video" width="630" height="490" autoplay muted>
@@ -44,7 +44,7 @@
                 </div>
             </div>
         
-            <div class="col-md-5 co1-xs-12">
+            <div class="col-lg-5 co1-xs-12">
                 
                 <!-- Snapshot result -->
                 <div class="box">
