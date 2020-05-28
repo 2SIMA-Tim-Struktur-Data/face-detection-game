@@ -27,12 +27,12 @@ function startVideo() {
     )
 }
 
-// Add face detection canvas
+// When video play add face detection canvas
 video.addEventListener("play", () => {
-    const canvas = faceapi.createCanvasFromMedia(video);
-    let web_cam = document.querySelector(".web_cam");
-
-    // insert canvas to container
+    const canvas = faceapi.createCanvasFromMedia(video); // Declare canvas
+    let web_cam = document.querySelector(".web_cam"); //Select web_cam class
+    
+    // insert canvas to web_cam class
     web_cam.append(canvas);
 
     const displaySize = {
@@ -40,10 +40,12 @@ video.addEventListener("play", () => {
         height: video.height
     };
 
-    faceapi.matchDimensions(canvas, displaySize);
+    faceapi.matchDimensions(canvas, displaySize); //match canvas and video size
     
+    // Declare global variables for calculate score and output result's emotion
     var playerEmotion;
     var playerScore;
+    
     var intervals = setInterval(async () => {
         const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
 
@@ -62,19 +64,22 @@ video.addEventListener("play", () => {
         faceapi.draw.drawDetections(canvas, resizedDetections)
         faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
         
-        if (resizedDetections[0] && Object.keys(resizedDetections[0]).length > 0 && expressions !== null & expressions!== undefined) {
-            // Generate question
+        // Get score and emotion data
+        if (resizedDetections[0] && Object.keys(resizedDetections[0]).length > 0 && expressions !== null && expressions!== undefined) {
+            // Declare variables for counting score
             const maxValue = Math.max(...Object.values(expressions));
             const emotion = Object.keys(expressions).filter(
                 item => expressions[item] === maxValue
             );
             
+            // Calculate score if correct
             if(question == emotion[0]){
                 score = (maxValue * 1000).toFixed(2);   
                 playerEmotion = emotion[0];
                 playerScore = score;
                 fetchResult();
             }
+            // Calculate score if wrong
             else if(question !== emotion[0]) {
                 score = (maxValue * 400).toFixed(2);
                 playerEmotion = emotion[0];
@@ -86,6 +91,7 @@ video.addEventListener("play", () => {
             $("#undetect").hide();
 
         }
+        // If face is not detected score will be 0
         else if(expressions == null || expressions == undefined) {
             document.getElementById("undetect").innerText = `Can't detect your face. Please reposition your face...`;
             score = 0;
@@ -97,18 +103,17 @@ video.addEventListener("play", () => {
 
     }, 100);
     
-    var listEmotion = ['angry','disgusted','fearful','happy','neutral','sad','surprised']
-    var question = listEmotion[Math.floor(Math.random() * listEmotion.length)];
+    var listEmotion = ['angry','disgusted','fearful','happy','neutral','sad','surprised']; // Declare question array
+    var question = listEmotion[Math.floor(Math.random() * listEmotion.length)]; // Generate question randomly
     
 
-    // Fetch score and emotion result from face detection
+    // Fetch score and emotion result from face detection setInterval
     function fetchResult(){
         var fetchEmotion = playerEmotion;
         var fetchplayerScore = playerScore;
         document.getElementById("myScore").innerText = `Your score is ${fetchplayerScore}`;
         document.getElementById("myEmotion").innerText = `You are now feeling ${fetchEmotion}`;
     }
-
     
     var result = document.getElementById('snapshot_result'),
     context = result.getContext('2d'),
@@ -120,9 +125,8 @@ video.addEventListener("play", () => {
             $('#startbutton').hide();
             document.getElementById("question").innerText = `Make ${question} expression`;
             
-            
+            // Will capture photo after 6s
             setTimeout(function () {
-                // dataUrl = imgUrl;
                 //Pause Video
                 video.pause();
                 $("#undetect").hide();
@@ -149,7 +153,8 @@ video.addEventListener("play", () => {
             clearInterval(intervals);
             
         }, 6000);
-    
+        
+        // Progress bar for 5s
         function progress(timeleft, timetotal, $element) {
             var progressBarWidth = timeleft * $element.width() / timetotal;
             $element.find('div').animate({ width: progressBarWidth }, 500).html(Math.floor(timeleft/60) + ":"+ timeleft%60);;
@@ -164,10 +169,11 @@ video.addEventListener("play", () => {
         
     });
     
+    // Save game record
     $(document).one('click', '#savebutton', function (){
         var fetchEmotion = playerEmotion;
         var fetchplayerScore = playerScore;
-        // console.log(dataUrl);
+      
         $.ajax({
             type: "POST",
             url: "/../php/savepicture.php?id=<?php echo $_SESSION[$username}?>",
@@ -178,7 +184,7 @@ video.addEventListener("play", () => {
            },
             success: function (data) {
                 $("#seeresult").html(data);
-                alert("Your image has been saved to history");
+                alert("Your game record has been saved to history");
             },
             error: function () {
                 alert("failure");
@@ -190,7 +196,7 @@ video.addEventListener("play", () => {
     
 });
 
-//Refresh Page
+//Refresh Game
 function playAgain() {
     window.location.reload();
 }
