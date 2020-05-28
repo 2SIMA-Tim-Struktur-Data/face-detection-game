@@ -1,5 +1,5 @@
 <nav class="navbar navbar-light">
-    <a class="navbar-brand">Face Detection Game</a>
+    <a class="navbar-brand">Face Expression Game</a>
     <div class="form-inline">
         <a href="./index.php"><button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Home</button></a>
         <a href="./leaderboard.php"><button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Leaderboard</button></a>

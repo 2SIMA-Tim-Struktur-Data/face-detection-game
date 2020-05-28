@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
-    <title>Home | Face Detection Game</title>
+    <title>Home | Face Expression Game</title>
+    <?php include_once("./head.php") ?>
 </head>
 
 <body>
@@ -23,7 +24,7 @@
                     <?php 
                         if (isset($_SESSION['username'])) {
                             echo '<h2>You are logged in!</h2>';
-                            echo"<h2>Welcome to Face Detection Game,". " ". "<b>". ucfirst(($_SESSION["user_id"]))."</b>!</h2>";
+                            echo"<h2>Welcome to Face Expression Game,". " ". "<b>". ucfirst(($_SESSION["user_id"]))."</b>!</h2>";
                         }
                         else {
                         echo '<h2>You are logged out!</h2>';

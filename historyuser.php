@@ -19,7 +19,8 @@ $resultCheck = mysqli_num_rows($result);
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="lightbox/css/lightbox.min.css">
-    <title>History User | Face Detection Game</title>
+    <title>History User | Face Expression Game</title>
+    <?php include_once("./head.php") ?>
 </head>
 
 <body translate="no">

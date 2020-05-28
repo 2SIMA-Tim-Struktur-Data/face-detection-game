@@ -8,7 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/main.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
-    <title>Play the Game | Face Detection Game</title>
+    <title>Play the Game | Face Expression Game</title>
+    <?php include_once("./head.php") ?>
 </head>
 
 <body>

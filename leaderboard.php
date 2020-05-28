@@ -16,13 +16,13 @@ $resultCheck = mysqli_num_rows($result);
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/leaderboard.css">
-    <link rel="stylesheet" href="js/leaderboard.js">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel="stylesheet" href="https://rsms.me/inter/inter-ui.css?v=3.2">
-    <title>Leaderboard | Face Detection Game</title>
+    <title>Leaderboard | Face Expression Game</title>
+    <?php include_once("./head.php") ?>
            
 </head>
 

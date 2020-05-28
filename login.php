@@ -7,7 +7,8 @@
 	<link rel="stylesheet" href="css/user.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
-	<title>Login | Face Detection Game</title>
+	<title>Login | Face Expression Game</title>
+	<?php include_once("./head.php") ?>
 </head>
 
 <body>
