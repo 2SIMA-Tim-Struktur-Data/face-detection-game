@@ -5,7 +5,7 @@ include_once('php/db_handler.php');
 if( isset( $_SESSION['username'])){
     $thisUser = $_SESSION['username'];
 }   
-$sql_history = "SELECT `photo_id`,`created_at`, `score`, `emotion` ,`image_path` FROM `snapshots` WHERE `user_no` = '".$thisUser."' ";
+$sql_history = "SELECT `photo_id`, date_format(created_at, '%d %M %Y - %h:%i %p') AS `created_time`, `score`, `emotion` ,`image_path` FROM `snapshots` WHERE `user_no` = '".$thisUser."' ";
 $result = mysqli_query($conn,$sql_history);
 $resultCheck = mysqli_num_rows($result);
 
@@ -36,17 +36,17 @@ $resultCheck = mysqli_num_rows($result);
             
             <li class='in-view'>
                 <div>
-                    <time><?php echo $row['created_at']; ?></time>
+                    <time><?php echo $row['created_time']; ?></time>
                     <div class='discovery'>
                         <a href='img/snapshots/<?php echo $row['image_path']; ?>' data-lightbox="snapshots-<?php echo $row['photo_id']; ?>" data-title="
                         
                             <div class='process text-left mt-3'>
                                 <a href='img/snapshots/<?php echo $row['image_path']; ?>' download>
-                                    <button class='btn btn-primary mr-2'><img class='mr-2'src='download.svg' width='28px' style='filter: invert(1)'>Download</button>
+                                    <button class='btn btn-primary mr-2 p-2'><img class='mr-2'src='./img/icon/download.svg' width='28px' style='filter: invert(1)'>Download</button>
                                 </a>
                                 <a href='javascript:confirmation(<?php echo $row['photo_id']; ?>)'>
-                                    <button class='btn btn-danger mx-2'>
-                                        <img class='mr-2'src='delete.svg' width='28px' style='filter: invert(1)'>Delete Record
+                                    <button class='btn btn-danger mx-2 p-2'>
+                                        <img class='mr-2'src='./img/icon/delete.svg' width='28px' style='filter: invert(1)'>Delete Record
                                     </button>
                                 </a>
                             </div>
@@ -68,7 +68,7 @@ $resultCheck = mysqli_num_rows($result);
                     }
                 }
                 else {
-                    echo "<div class='box'><h1>No History!</h1> <p>You haven't played a game...</p></div>";
+                    echo "<div class='box'><h1>No History!</h1> <p>You haven't saved any game record...</p></div>";
                 }
             ?>
         </ul>
