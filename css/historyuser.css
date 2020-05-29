@@ -59,7 +59,6 @@ body {
 }
 
 .timeline ul li div div {
-    height: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -115,6 +114,9 @@ body {
     padding: 20px;
     margin-top: 3rem;
 }
+.process button {
+    margin-top: 1rem;
+}
 
 @media screen and (max-width: 900px) {
     .timeline ul li div {
@@ -144,10 +146,5 @@ body {
 
     .timeline ul li:nth-of-type(even)>div {
         left: 45px;
-    }
-}
-@media screen and (max-width: 379.9999px) {
-    button.delete {
-        margin-top: 1rem;
     }
 }

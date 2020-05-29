@@ -44,11 +44,11 @@ $resultCheck = mysqli_num_rows($result);
                         
                             <div class='process text-left mt-3'>
                                 <a href='img/snapshots/<?php echo $row['image_path']; ?>' download>
-                                    <button class='btn btn-primary mr-3 p-2 download'><img class='mr-2'src='./img/icon/download.svg' width='28px' style='filter: invert(1)'>Download</button>
+                                    <button class='btn btn-primary mr-3 p-2 download'><img class='mr-2'src='./img/icon/download.svg' width='20px' style='filter: invert(1)'>Download</button>
                                 </a>
                                 <a href='javascript:confirmation(<?php echo $row['photo_id']; ?>)'>
                                     <button class='btn btn-danger p-2 delete'>
-                                        <img class='mr-2'src='./img/icon/delete.svg' width='28px' style='filter: invert(1)'>Delete Record
+                                        <img class='mr-2'src='./img/icon/delete.svg' width='20px' style='filter: invert(1)'>Delete Record
                                     </button>
                                 </a>
                             </div>
