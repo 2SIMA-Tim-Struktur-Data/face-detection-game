@@ -29,10 +29,10 @@
             <div class="col-lg-7 col-xs-12">
                 <!-- Webcam screen-->
                 <div class="web_cam center">
-                    <video id="video" width="630" height="490" autoplay muted>
+                    <video id="video" autoplay muted>
                     </video>
                 </div>
-                <canvas id="snapshot_result" width="630" height="490"></canvas>
+                <canvas id="snapshot_result"></canvas>
                 <div id="progressBar">
                     <div class="bar"></div>
                 </div>
@@ -50,13 +50,13 @@
                 <!-- Snapshot result -->
                 <div class="box">
                     <div class="text">
-                        <p class="manual"><em>Make sure the blue box is appearing. The blue box will detect your expression. <br><br>
-                            How to play : <br> Click <b>'Start Game'</b> to play. Question will be shown below this text. You only have 5 seconds to make the expression based on the question. After that, you may see your photo's result with your score and expression. If you'd like to save the result to your history, click <b>'Save'</b>. Good Luck and Have Fun !</em> 
-                        </p>
                         <h1 id="question"></h1>
                         <p id="myEmotion"></p>
                         <p id="myScore"></p>
                         <p id="undetect"></p>
+                        <p class="manual"><em>Make sure the blue box is appearing. The blue box will detect your expression. <br><br>
+                            How to play : <br> Click <b>'Start Game'</b> to play. Question will be shown below this text. You only have 5 seconds to make the expression based on the question. After that, you may see your photo's result with your score and expression. If you'd like to save the result to your history, click <b>'Save'</b>. Good Luck and Have Fun !</em> 
+                        </p>
                         <p id="seeresult"></p>
                     </div>
                 </div>

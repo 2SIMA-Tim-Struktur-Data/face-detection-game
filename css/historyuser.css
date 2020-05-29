@@ -133,9 +133,6 @@ body {
 }
 
 @media screen and (max-width: 600px) {
-    body {
-        background: #8bfff4;
-    }
 
     .timeline ul li {
         margin-left: 20px;
@@ -147,5 +144,10 @@ body {
 
     .timeline ul li:nth-of-type(even)>div {
         left: 45px;
+    }
+}
+@media screen and (max-width: 379.9999px) {
+    button.delete {
+        margin-top: 1rem;
     }
 }

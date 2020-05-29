@@ -15,6 +15,7 @@ $resultCheck = mysqli_num_rows($result);
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/historyuser.css">
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -43,10 +44,10 @@ $resultCheck = mysqli_num_rows($result);
                         
                             <div class='process text-left mt-3'>
                                 <a href='img/snapshots/<?php echo $row['image_path']; ?>' download>
-                                    <button class='btn btn-primary mr-2 p-2'><img class='mr-2'src='./img/icon/download.svg' width='28px' style='filter: invert(1)'>Download</button>
+                                    <button class='btn btn-primary mr-3 p-2 download'><img class='mr-2'src='./img/icon/download.svg' width='28px' style='filter: invert(1)'>Download</button>
                                 </a>
                                 <a href='javascript:confirmation(<?php echo $row['photo_id']; ?>)'>
-                                    <button class='btn btn-danger mx-2 p-2'>
+                                    <button class='btn btn-danger p-2 delete'>
                                         <img class='mr-2'src='./img/icon/delete.svg' width='28px' style='filter: invert(1)'>Delete Record
                                     </button>
                                 </a>
@@ -63,7 +64,7 @@ $resultCheck = mysqli_num_rows($result);
                         <span>Point</span>
                     </div>
                 </div>
-            </li>";
+            </li>
 
             <?php
                     }

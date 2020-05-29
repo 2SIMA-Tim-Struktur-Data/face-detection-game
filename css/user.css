@@ -6,9 +6,10 @@
   box-sizing: border-box;
 }
 
-body{
-  background: url(../img/bg/back.gif) no-repeat;
+.wrapper{
+  background: url(../img/bg/back.gif) center no-repeat;
   background-size: cover;
+  padding: 100px;
 }
 
 .form{
@@ -20,7 +21,6 @@ body{
   position: relative;
   left: 50%;
   transform: translate(-50%,0);
-  margin-top: 80px;
 }
 
 form h1{
@@ -113,4 +113,10 @@ form h1{
   margin-top: 60px;
   text-align: center;
   font-size: 13px;
+}
+
+@media only screen and (max-width: 475.999px){
+  .form {
+    width: 300px;
+  }
 }
