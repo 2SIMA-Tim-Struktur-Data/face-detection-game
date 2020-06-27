@@ -16,8 +16,6 @@
 <body>
     <?php include_once("./navbar.php")?>
     <main>
-
-
         <div class="container">
             <div class="card text-center" >
                 <div class="card-body">
@@ -46,11 +44,28 @@
                 </div>
             </div>
         </div>
-
-
-
-
     </main>
+    <footer style="position:relative; bottom:0em; width:100vw; padding: 1.5rem 2rem 1rem; background: #000000">
+        <div class="row">
+            <div class="team col-md-7 col-sm-12 text-md-left text-center mb-md-0 mb-2">
+                <p style="color: #ffffff; margin:0; ">
+                    <b><em>Arraysome Team - 2SIMA</em></b> &copy; 2020
+                </p>
+                <p style="color: #ffffff; margin:0; font-size:.8rem;"> Arif Budiman (1931002) | Tri Susanti 1931019 | Jose
+                    Manuel Budiman (1931039) | Kisusyenni Venessa (1931150) | Kendy Junianto (1931175)</p>
+            </div>
+            <div class="project col-md-4 col-sm-12 text-md-right text-center align-self-center mb-md-0 mb-2">
+                <p style="color: #ffffff; margin:0; display:inline-block;font-size:.8rem; ">
+                    <em>Projek UAS Mata Kuliah Struktur Data | Universitas Internasional Batam </em>
+                    <br>
+                    Dosen Pembimbing: Dr. Hendi Sama
+                </p>
+            </div>
+            <div class="logo-uib col-md-1 text-md-right text-center">
+                <img style="display: inline-block;" src="img/logo-uib.png" width="50" alt="">
+            </div>
+        </div>
+    </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
