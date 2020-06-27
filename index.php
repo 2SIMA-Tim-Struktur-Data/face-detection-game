@@ -5,12 +5,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/homepage.css">
-    <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
     <title>Home | Face Expression Game</title>
     <?php include_once("./head.php") ?>
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/homepage.css">
 </head>
 
 <body>
@@ -45,24 +45,24 @@
             </div>
         </div>
     </main>
-    <footer style="position:relative; bottom:0em; width:100vw; padding: 1.5rem 2rem 1rem; background: #000000">
+    <footer>
         <div class="row">
             <div class="team col-md-7 col-sm-12 text-md-left text-center mb-md-0 mb-2">
-                <p style="color: #ffffff; margin:0; ">
-                    <b><em>Arraysome Team - 2SIMA</em></b> &copy; 2020
+                <p>
+                    <b>Face Expression Game by <em>Arraysome Team - 2SIMA</em></b> &copy; 2020
                 </p>
-                <p style="color: #ffffff; margin:0; font-size:.8rem;"> Arif Budiman (1931002) | Tri Susanti 1931019 | Jose
+                <p> Arif Budiman (1931002) | Tri Susanti 1931019 | Jose
                     Manuel Budiman (1931039) | Kisusyenni Venessa (1931150) | Kendy Junianto (1931175)</p>
             </div>
             <div class="project col-md-4 col-sm-12 text-md-right text-center align-self-center mb-md-0 mb-2">
-                <p style="color: #ffffff; margin:0; display:inline-block;font-size:.8rem; ">
-                    <em>Projek UAS Mata Kuliah Struktur Data | Universitas Internasional Batam </em>
-                    <br>
+                <p>
                     Dosen Pembimbing: Dr. Hendi Sama
+                    <br>
+                    <em>Projek UAS Mata Kuliah Struktur Data <br> Universitas Internasional Batam </em>
                 </p>
             </div>
-            <div class="logo-uib col-md-1 text-md-right text-center">
-                <img style="display: inline-block;" src="img/logo-uib.png" width="50" alt="">
+            <div class="logo-uib col-md-1  col-sm-12 text-md-right text-center align-self-center">
+                <img class="img-fluid" src="img/logo-uib.png" alt="logo-uib">
             </div>
         </div>
     </footer>

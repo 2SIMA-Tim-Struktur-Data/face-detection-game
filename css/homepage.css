@@ -16,12 +16,29 @@ body {
     margin: auto;
     width: 25rem;
 }
-
-@media screen and (max-width: 435px) {
+footer{
+    position: absolute; 
+    bottom: 0em; 
+    width:100vw; 
+    padding: 1.5rem 2rem 1rem; 
+    background: #000000;
+}
+footer p {
+    color: #ffffff; 
+    margin:0;
+}
+@media screen and (max-width: 576px) {
     .container {
         padding: 50px 20px;
     }
     .container .card {
         width: 17rem;
+    }
+    footer {
+        position: relative;
+        bottom: 0;
+    }
+    footer .logo-uib img {
+        width: 70px;
     }
 }
